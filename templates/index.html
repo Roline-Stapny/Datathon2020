@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+ <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+
+<body class="w3-light-grey">
+
+
+
+
+
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>TAMU Datathon - TD For-You Page</b></h1>
+  <h2> Visualization and Team Finder </h2>
+  <br> <br>
+  <p> Tell me your User ID and I'll Match you with a team</p>
+
+   <form action="{{ url_for('background_check_throughputrate') }}" method="post" id="throughputRateForm" enctype="multipart/form-data">
+        <label id="icon" for="name"><i class="fas fa-user"></i></label>
+        <input name="throughput_rate_text" class="input_box">
+        <input id="checkThroughputRate" type="submit" class='new-button-data' value="Find my team">
+        <output id="throughputRateResult" class="result_box" ></output>
+    </form>
+
+</header>
+
+<!-- Grid -->
+<div class="w3-row">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="{{ user_image }}" alt="Nature" style="width:100%">
+    <div class="w3-container">
+      <h3><b>Technical expertise of the 2020 datathon applicants</b></h3>
+     
+    </div>
+
+    <div class="w3-container">
+      <p>80% of the applicants are familiar with python. Majority of the applicants have basic knowlege of data science</p>
+      
+    </div>
+  </div>
+  <hr>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="{{ major }}" alt="Nature" style="width:100%">
+    <div class="w3-container">
+      <h3><b>Were the datathon attendees majoring in data science field??</b></h3>
+     
+    </div>
+
+    <div class="w3-container">
+      <p>30% of the applicants did not have a major or minor in data science related field, which is fascinating. </p>
+      
+    </div>
+  </div>
+
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+  <img src="{{ workshop }}" alt="Norway" style="width:100%">
+    <div class="w3-container">
+      <h3><b>Who were the workshop attendees??</b></h3>
+     
+    </div>
+
+    <div class="w3-container">
+      <p>The majority of the audience in the workshops were masters, juniors and PhD students.</p>
+     
+    </div>
+  </div>
+<!-- END BLOG ENTRIES -->
+</div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card w3-margin w3-margin-top">
+  
+    <div class="w3-container w3-white">
+      <h4><b>Roline Stapny Saldanha</b></h4>
+      <p>Howdy, I am studying masters in Computer Science at TAMU</p>
+    </div>
+  </div><hr>
+  
+  <!-- Posts -->
+  
+ 
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+  <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+  
+  <script type="text/javascript">
+    $(function () {
+        $('#throughputRateForm').on('submit', function (e) {
+            e.preventDefault();
+
+            var form = $(this)[0];
+            var formData = new FormData(form);
+
+            $.ajax({
+                url: '/background_check_throughputrate',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(data);
+                    document.getElementById('throughputRateResult').innerHTML = data;
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
